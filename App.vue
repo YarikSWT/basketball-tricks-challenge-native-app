@@ -12,8 +12,12 @@
 </template>
 
 <script>
-// import MintUI from 'mint-ui'
+
 import GameAssets from "./components/GameAssets.vue"
+import Vue from "vue-native-core";
+import { VueNativeBase } from "native-base";
+Vue.use(VueNativeBase);
+
 export default {
   components: {
     GameAssets
