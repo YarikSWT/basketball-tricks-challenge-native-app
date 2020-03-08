@@ -1,14 +1,39 @@
 <template>
-  <view class="container">
-    <button v-if="state > 0" :on-press="goHome" title="Go Home"></button>
-    <view>
-      <view v-if="state == 0">
-        <text class="text-color-primary">Basketball Tricks Game</text>
-        <button :on-press="startGame" title="Start"></button>
+   <nb-container>
+    <nb-header>
+      <nb-left>
+        <nb-button :onPress="goHome" transparent>
+          <!-- <nb-icon :name="menu" /> -->
+          <nb-icon name="home" />
+        </nb-button>
+      </nb-left>
+      <nb-body>
+        <nb-title>Basketball Tricks Game</nb-title>
+      </nb-body>
+      <nb-right />
+    </nb-header>
+    <nb-content padder>
+      <view class="container">
+        <!-- <button v-if="state > 0" :on-press="goHome" title="Go Home"></button> -->
+        <view>
+          <view v-if="state == 0">
+            <!-- <nb-text class="text-color-primary">Basketball Tricks Game</nb-text> -->
+            <nb-button :on-press="startGame">
+              <nb-text >Start</nb-text>
+            </nb-button>
+          </view>
+          <GameAssets v-else></GameAssets>
+        </view>
       </view>
-      <GameAssets v-else></GameAssets>
-    </view>
-  </view>
+    </nb-content>
+    <nb-footer>
+      <nb-footer-tab>
+        <nb-button active full>
+          <nb-text>Footer</nb-text>
+        </nb-button>
+      </nb-footer-tab>
+    </nb-footer>
+  </nb-container>
 </template>
 
 <script>
@@ -43,10 +68,12 @@ export default {
   background-color: white;
   align-items: center;
   justify-content: center;
-  flex: 1;
+  top: 200px;
+  /* flex: 1; */
 }
 .text-color-primary {
   color: blue;
-  top: -100px;
+  margin-bottom: 100px;
+  /* top: -100px; */
 }
 </style>
