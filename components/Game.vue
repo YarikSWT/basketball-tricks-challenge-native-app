@@ -94,7 +94,7 @@ export default {
 <style>
 .h1{
     text-align: center;
-    margin-top: -50px;
+    /* margin-top: -50px; */
     margin-bottom: 40px;
 }
 .buttons {
@@ -107,7 +107,7 @@ export default {
     margin-bottom: 40px;
 }
 .window {
-  width: 400px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   /* align-items: center */

@@ -18,7 +18,7 @@
         <view>
           <view v-if="state == 0">
             <!-- <nb-text class="text-color-primary">Basketball Tricks Game</nb-text> -->
-            <nb-button :on-press="startGame">
+            <nb-button class="start-btn" :on-press="startGame">
               <nb-text >Start</nb-text>
             </nb-button>
           </view>
@@ -26,13 +26,13 @@
         </view>
       </view>
     </nb-content>
-    <nb-footer>
+    <!-- <nb-footer>
       <nb-footer-tab>
         <nb-button active full>
           <nb-text>Footer</nb-text>
         </nb-button>
       </nb-footer-tab>
-    </nb-footer>
+    </nb-footer> -->
   </nb-container>
 </template>
 
@@ -68,8 +68,16 @@ export default {
   background-color: white;
   align-items: center;
   justify-content: center;
-  top: 200px;
-  /* flex: 1; */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  /* top: 200px; */
+  /* flex: ; */
+}
+.start-btn{
+  top: 300px;
+  /* margin-top: 50%; */
 }
 .text-color-primary {
   color: blue;
