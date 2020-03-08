@@ -16,16 +16,20 @@
           placeholderIconColor="#007aff"
           :onValueChange="onValueChange"
         >
-          <item label="Easy" value="key0" />
-          <item label="Medium" value="key1" />
-          <item label="Hard" value="key2" />
-          <item label="Random" value="key3" />
+          <item label="Easy" value="easy" />
+          <item label="Medium" value="medium" />
+          <item label="Hard" value="hard" />
+          <item label="Random" value="random" />
         </nb-picker>
+      </nb-item>
+      <nb-item class="form-item" floatingLabel>
+        <nb-label>When hame ends? (points)</nb-label>
+        <nb-input keyboardType="numeric" v-model="end" />
       </nb-item>
     </nb-form>
     <nb-button :disabled="numPlayers == '' || selectedMode == '' " :on-press="beginGame"> <nb-text class="btn-text">Begin</nb-text> </nb-button>
   </view>
-  <Game v-else :amount="numPlayers" :mode="selectedMode"></Game>
+  <Game v-else :amount="numPlayers" :end="end" :mode="selectedMode"></Game>
 </template>
 
 <script>
@@ -41,7 +45,8 @@ export default {
     return {
       numPlayers: "",
       selectedMode: "",
-      started: false
+      started: false,
+      end: "11"
     };
   },
   methods: {

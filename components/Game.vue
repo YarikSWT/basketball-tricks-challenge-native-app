@@ -1,5 +1,5 @@
 <template>
-  <view class="window">
+  <view class="window" v-if="!final">
       <nb-h1 class="h1">Player {{ currentPlayer }}</nb-h1>
     <!-- <text>Player {{ currentPlayer }}</text> -->
     <view>
@@ -33,22 +33,32 @@
       </text>
     </view>
   </view>
+  <view v-else>
+      <nb-h1 class="h1">Player {{ currentPlayer }} WIN</nb-h1>
+  </view>
 </template>
 
 <script>
 export default {
-  props: ["amount"],
+  props: ["amount","mode", "end"],
   data() {
     return {
       currentPlayer: 1,
       currentTask: "",
-      tasks: ["Fadeaway", "T-jass layup", "Kyrie reverse layup", "Curry range"],
-      scores: []
+      tasks: { 
+          hard: ["Fadeaway", "T-jass layup", "Kyrie reverse layup", "Curry range"],
+          medium: ["fuck Igor"],
+          easy: ["fuck Yarik"],
+          random: ["Fadeaway", "T-jass layup", "Kyrie reverse layup", "Curry range", "fuck Igor", "fuck Yarik"]
+          },
+      scores: [],
+      final: false
     };
   },
   created() {
-    this.currentTask = this.tasks[
-      Math.floor(Math.random() * this.tasks.length)
+    console.log(this.mode, this.tasks[this.mode], this.end)
+    this.currentTask = this.tasks[this.mode][
+      Math.floor(Math.random() * this.tasks[this.mode].length)
     ];
     for (let index = 0; index < this.amount; index++) {
       this.scores.push({
@@ -59,8 +69,8 @@ export default {
   },
   methods: {
     nextPlayer() {
-      this.currentTask = this.tasks[
-        Math.floor(Math.random() * this.tasks.length)
+      this.currentTask = this.tasks[this.mode][
+        Math.floor(Math.random() * this.tasks[this.mode].length)
       ];
       this.currentPlayer += 1;
       if (this.currentPlayer > this.amount) this.currentPlayer = 1;
@@ -71,7 +81,11 @@ export default {
     },
     scored() {
       this.scores[this.currentPlayer - 1].score += 1;
-      this.nextPlayer();
+      if(this.scores[this.currentPlayer - 1].score >= this.end){
+        //   console.log(this.scores[this.currentPlayer - 1])
+          this.final = true
+      }else
+        this.nextPlayer();
     }
   }
 };
